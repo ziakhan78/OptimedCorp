@@ -1,0 +1,148 @@
+﻿@model IEnumerable<OptimedCorporation.Models.EventsDetails>
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@*<script>
+        $(document).ready(function () {
+            $("div img .carousel-item:last").addClass("active");
+        });
+    </script>*@
+
+<script>
+    $(document).ready(function () {
+        $("div .carousel-inner img .carousel-item:first").addClass("active");
+    });
+</script>
+
+
+<link href="~/css/events.css" rel="stylesheet" />
+
+
+
+<div id="home" class="dark-section text-center section">
+    <img class="img-fluid img_hpercent" src="~/images/Events.jpg" alt="" />
+    <div class="video-section-mask"></div>
+</div>
+
+
+<div class="workinghour_bg">
+    <div class="container">
+        <div class="row">
+            <ol class="breadcrumb breadcrumb-right" style="padding:10px 0; margin:0;">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Events</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row mt-4">
+
+        <!-- Large modal -->
+        @foreach (var item in Model)
+        {
+            <div id="@item.EventId" class="modal fade ttr1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Optimed Corporation</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            @{ bool a = false; }
+
+                            <div id="@item.EventId" class="carousel slide " data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    @*<li data-target="#@item.EventId" data-slide-to="0" class="active"></li>*@
+                                    @foreach (var item1 in Model)
+                                    {
+                                        if (item.EventId == item1.EventId)
+                                        {
+                                            if (a == false)
+                                            {
+                                                a = true;
+                                                <li data-target="#@item.EventId" data-slide-to="1" class="active"></li>
+                                            }
+                                            else
+                                            {
+                                                <li data-target="#@item.EventId" data-slide-to="1"></li>
+                                            }
+                                        }
+                                    }
+
+                                </ol>
+
+
+                                <div class="carousel-inner" role="listbox">
+                                    <!-- Slide One - Set the background image for this slide in the line below -->
+                                    @{ bool b = false; }
+                                    @foreach (var item1 in Model)
+                                    {
+                                        if (item.EventId == item1.EventId)
+                                        {
+
+                                            if (b == false)
+                                            {
+                                                b = true;
+                                                <img class="carousel-item active" src="../EventsNews/EventsImages/@Html.ValueFor(modelItem => item1.EventsImages)" />
+                                            }
+                                            else
+                                            {
+                                                <img class="carousel-item " src="../EventsNews/EventsImages/@Html.ValueFor(modelItem => item1.EventsImages)" />
+                                            }
+                                        }
+                                    }
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <h5>@item.Title</h5>
+                                <h6>Venue: @item.Location</h6>
+                                <h6>Date: @item.EventDate.ToString("dd MMMM yyyy")</h6>
+                                <p class="text-justify">
+                                    @item.Description
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="clearfix mb-2"></div>
+
+        @foreach (var item in ViewBag.Events)
+        {
+            <div class="col-lg-3 col-sm-6 portfolio-item">
+                <div class="card">
+                    <a href="#" data-toggle="modal" data-target="#@item.EventId"><img class="card-img-top" src="../EventsNews/EventsThumbnails/@item.Thumbnail" alt=""></a>
+                    <p class="bg-primaryb text-dark">@item.Title</p>
+                    <p class="style01">
+                        <b>Venue:</b> @item.Location<br>
+                        <b>Date:</b> @item.EventDate.ToString("dd MMMM yyyy")
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+
+
+</div>

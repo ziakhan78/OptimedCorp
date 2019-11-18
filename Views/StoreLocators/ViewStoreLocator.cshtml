@@ -1,0 +1,110 @@
+﻿@model IEnumerable<OptimedCorporation.Models.StoreLocator>
+
+@{
+    ViewBag.Title = "List of Store Locator";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p> 
+    <a class="btn btn-success btn-sm" href="@Url.Action("Create", "StoreLocators")"><i class="glyphicon glyphicon-plus-sign"></i> Add New</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ShopName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddressLine1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+
+        @*<th>
+            @Html.DisplayNameFor(model => model.WorkingDays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkingTime)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShopName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddressLine1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitude)
+        </td>
+
+        @*<td>
+            @Html.DisplayFor(modelItem => item.WorkingDays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkingTime)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+
+        <td width="250">
+            <a class="btn btn-info btn-sm" href="@Url.Action("Details", "StoreLocators", new { id = item.Id})"><i class="glyphicon glyphicon-info-sign"></i> Details</a>          
+            <a class="btn btn-danger btn-sm" onclick="return confirm('Are sure you want to delete this item?');" href="@Url.Action("DeleteConfirmed", "StoreLocators", new { id = item.Id})"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+            <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", "StoreLocators", new { id = item.Id})"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+        </td>
+
+    </tr>
+}
+
+</table>

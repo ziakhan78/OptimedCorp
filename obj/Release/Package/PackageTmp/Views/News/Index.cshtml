@@ -1,0 +1,80 @@
+﻿@model IEnumerable<OptimedCorporation.Models.News>
+@{
+    ViewBag.Title = "Newsletter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+
+    .carousel-item {
+        height: 70vh;
+        min-height: 300px;
+        background: no-repeat center center scroll;
+        background-size: cover;
+    }
+
+
+    .carousel-item01 {
+        min-height: 300px;
+        background: no-repeat center center scroll;
+    }
+
+    .tales {
+        height: 370px
+    }
+</style>
+
+
+<div id="home" class="dark-section text-center section">
+    <img class="img-fluid img_hpercent" src="images/newsletter.jpg" alt="" />
+    <div class="video-section-mask"></div>
+</div>
+
+<div class="workinghour_bg">
+    <div class="container">
+
+        <div class="row">
+            <ol class="breadcrumb breadcrumb-right" style="padding:10px 0; margin:0;">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Newsletter</li>
+            </ol>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row mt-4">
+
+
+
+
+   
+
+
+        <!-- Large modal -->
+
+
+
+
+
+
+
+        <div class="clearfix mb-2"></div>
+
+        @foreach (var item in Model)
+        {
+
+            <div class="col-lg-3 col-sm-6 portfolio-item">
+                <a href="../EventsNews/NewsFiles/@Html.ValueFor(modelItem => item.FilePath)" target="_blank"><img class="img-thumbnail" src="../EventsNews/NewsThumbnails/@Html.ValueFor(modelItem => item.Thumbnail)" alt=""></a>
+                <div class="text-center">@Html.ValueFor(model => item.Heading)</div>
+            </div>
+
+        }
+
+
+    </div>
+</div>

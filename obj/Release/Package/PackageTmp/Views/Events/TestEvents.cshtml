@@ -1,0 +1,221 @@
+﻿@model IEnumerable<OptimedCorporation.Models.EventsVM>
+
+
+
+
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+
+    .carousel-item {
+        height: 70vh;
+        min-height: 300px;
+        background: no-repeat center center scroll;
+        background-size: cover;
+    }
+
+
+    .carousel-item01 {
+        min-height: 300px;
+        background: no-repeat center center scroll;
+    }
+
+    .tales {
+        height: 370px
+    }
+</style>
+
+<div id="home" class="page-header parallax-full dark-section text-center section" style="background:#7585a6 url(../images/Events.jpg)  50% 50%;">
+
+</div>
+
+
+
+
+<div class="workinghour_bg">
+    <div class="container">
+
+        <div class="row">
+            <ol class="breadcrumb breadcrumb-right" style="padding:10px 0; margin:0;">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Events</li>
+            </ol>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+
+    <div class="row mt-4">
+
+
+
+
+        <p class="text-center">
+
+            <strong>Events</strong><br>
+
+
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+
+        </p>
+
+
+        <!-- Large modal -->
+
+
+
+
+
+
+
+        <div class="clearfix mb-2"></div>
+
+        <div class="col-lg-3 col-sm-6 portfolio-item">
+            @foreach (var item in Model)
+            {
+
+                <div class="card">
+                    @*<a id="btnGet" href="@Url.Action("Test", "Events", new { id = item.EventId })">clik here</a>*@
+                    <input type="button" id="btnGet1" value="Get Current Time" />
+                    <a href="@Url.Action("Test", "Events", new { id = item.EventId })" data-toggle="modal" data-target=".ttr1">
+                        <img class="card-img-top" src="../EventsNews/EventsThumbnails/@Html.ValueFor(modelItem => item.Events.Thumbnail)" alt="">
+                        <p class="bg-primaryb text-dark">@item.Events.Title)</p>
+
+                        <p class="style01">
+                            <b>Location:</b>  @item.Events.Location)<br>
+                            <b>Date:</b>  @item.Events.EventDate)
+                        </p>
+                    </a>
+                </div>
+            }
+
+        </div>
+
+
+        <input type="text" id="txtName" />
+        <input type="button" id="btnGet" value="Get Current Time" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+        <script type="text/javascript">
+            $(function () {
+                $("#btnGet").click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Events/Test",
+                        data: '{name: "' + $("#txtName").val() + '" }',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            alert("Hello: " + response.Images + " .\nCurrent Date and Time: " + response.Images);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                });
+            });
+        </script>
+
+
+        @*<script type="text/javascript">
+                $(function () {
+                    $("#btnGet").click(function () {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Events/AjaxMethod",
+                            data: '{name: "' + $("#txtName").val() + '" }',
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (response) {
+                                alert("Hello: " + response.Title + " .\nCurrent Date and Time: " + response.Location);
+                            },
+                            failure: function (response) {
+                                alert(response.responseText);
+                            },
+                            error: function (response) {
+                                alert(response.responseText);
+                            }
+                        });
+                    });
+                });
+            </script>*@
+
+
+        <br />zia
+        <input id="Button1" type="button" value="button" />
+        <div id="output">
+
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#btnGet1").click(function () {
+                        $.ajax({
+
+                            url: "/Events/Test",
+                            dataType: "html",
+                            type: "POST",
+                            contentType: "application/html; charset=utf-8",
+                            success: function (result) {
+                                //alert("success");
+                                $("#output").html(result);
+
+                            },
+                            error: function (xhr) {
+                                alert("error");
+                            }
+                        });
+                    });
+
+                })
+            </script>
+
+
+            <script type="text/javascript">
+                $(function () {
+                    $("#modal").dialog({
+                        autoOpen: false,
+                        modal: true,
+                        title: "View Details"
+                    });
+                    $("#btnGet1").click(function () {
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/Events/Test1",
+
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "html",
+                            success: function (response) {
+                                $('#modal').html(response);
+                                $('#modal').dialog('open');
+                            },
+                            failure: function (response) {
+                                alert(response.responseText);
+                            },
+                            error: function (response) {
+                                alert(response.responseText);
+                            }
+                        });
+                    });
+                });
+            </script>
+
+            <div id="dialog" style="display: none">
+            </div>
+        </div>
+    </div>
+</div>
+
+

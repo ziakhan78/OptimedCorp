@@ -1,0 +1,177 @@
+﻿<style>
+    
+
+    .tales {
+        height: 370px;
+    }
+</style>
+@{
+    ViewBag.Title = "Brands - Etnia Barcelona";
+}
+
+@model IEnumerable<OptimedCorporation.Models.Banner>
+<script src="~/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("div.carousel-item:first").addClass("active");
+    });
+</script>
+
+
+
+<div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+
+    <div class="video-section-mask"></div>
+
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+
+
+    <div class="carousel-inner" role="listbox">
+        @foreach (var item in Model)
+        {
+            <div class="carousel-item">
+                <img class="img-fluid " src="../BannerImages/@Html.ValueFor(modelItem => item.BannerImage)" alt="" style="width:100%;" />
+            </div>
+        }
+    </div>
+
+</div>
+
+
+
+
+
+
+<section id="rrr" class="py-5">
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-6">
+
+                <img class="img-fluid" src="../images/Etnia-Barcelona-logo.png" alt="Etnia-Barcelona" />
+                <div class="clearfix"></div>
+                <h2 class="agile-title">Impersonality kills</h2>
+                <span class="w3-line"></span>
+                <p class="mt-3">
+                    The Etnia Barcelona brand was created in 2001 with the idea of being the most creative and colorful brand in the international optical industry, creating unique eyewear who’s values lie in the design of its colours. David Pellicer, the founder created the first colour based collection when he was only 23 years of age. This collection represented an array of colors and this is what can best define the philosophy of the company as well.
+
+
+                </p>
+
+
+
+
+
+            </div>
+
+            <div class="col-md-6">
+
+                <img class="img-fluid" src="../images/etnia-oobarcelona-collage.jpg" alt="etnia-oobarcelona" />
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+    </div>
+</section>
+<section class="workinghour_bg mb-5 p-5">
+    <div class="container">
+
+        <div class="row align-items-center">
+            <div class="col-md-6">
+
+                <div id="carouselExampleFade" class="carousel slide carousel-fade tales" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="" src="../images/etnia_slider/etnia-o-barcelona-slide1.jpg" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="" src="../images/etnia_slider/01.jpg" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="" src="../images/etnia_slider/02.jpg" alt="First slide">
+                        </div>
+
+                        <div class="carousel-item">
+                            <img class="" src="../images/etnia_slider/03.jpg" alt="First slide">
+                        </div>
+
+
+                        <div class="carousel-item">
+                            <img class="" src="../images/etnia_slider/04.jpg" alt="First slide">
+                        </div>
+
+
+                        <div class="carousel-item">
+                            <img class="" src="../images/etnia_slider/06.jpg" alt="First slide">
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div>
+
+            <div class="col-md-6">
+                <p class="text-left">
+                    Over 500 different colors, over 1000 eyeglasses in the catalog, over 60 new models every year, over 11,000 doors in more than 40 countries, the brand has cemented itself in the consumer mind space in very short period of time, in large part due to its quality and innovative design and color mechanism.
+
+
+                </p>
+
+                <div class="mt-3">
+                    <a class="btn btn-outline-secondary click-me" href="https://www.etniabarcelona.com/" target="_blank">Visit Etnia Barcelona Website</a>
+
+                </div>
+
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</section>
+
+

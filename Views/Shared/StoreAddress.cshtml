@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OptimedCorporation.Models.StoreLocator>
+<div class="row">
+    <div class="col-md-6">
+        <span class="w3-line"></span>
+        <h3>Bhandare Eyecare</h3>
+
+        <p>
+            <b>Address:</b><br>
+            Located in: Palladium Address: Mumbai,
+            Maharashtra - 400013 , India
+        </p>
+        <b>Phone:</b> (022) 66106139
+
+    </div>
+
+    <div class="col-md-6">
+
+
+        @foreach (var item in ViewBag.AddressDetails)
+        {
+            <span class="w3-line"></span>
+            <h3>@item.ShopName</h3>
+            <p>
+                <b>Address:</b><br>
+                @item.Address
+
+
+            </p>
+            <b>Phone:</b>@item.City
+        }
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="embed-responsive embed-responsive-16by9 m-3">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6343.995045035384!2d72.82855743400924!3d19.012580853346776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cec0a04c756b%3A0xf4c6e33d0bd706c8!2sSilver+Opticals!5e0!3m2!1sen!2sus!4v1534400653565" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+
+</div>

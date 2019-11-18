@@ -1,0 +1,140 @@
+﻿@model IEnumerable<OptimedCorporation.Models.Events>
+
+<style>
+    .carousel-item {
+        height: 400px;
+        background-size: cover;
+    }
+</style>
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="home" class="page-header02 parallax-full dark-section text-center section" style="background:#7585a6 url(ima-banner.jpg)  50% 50%;">
+
+</div>
+
+
+
+
+
+
+
+<div class="container">
+
+    <div class="row mt-4">
+
+
+
+
+        <p class="text-center">
+
+            <strong>Events</strong><br>
+
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+
+        </p>
+
+
+        <!-- Large modal -->
+
+
+
+        <div class="modal fade ttr1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Optimed Corporation</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+
+
+                        <div id="carouselExampleIndicators-1" class="carousel slide " data-ride="carousel">
+
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators-1" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators-1" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
+                                <li data-target="#carouselExampleIndicators-1" data-slide-to="3"></li>
+                            </ol>
+
+
+                            <div class="carousel-inner" role="listbox">
+                                <!-- Slide One - Set the background image for this slide in the line below -->
+                                <div class="carousel-item active" style="background-image:url(../images/events/113.jpg);"> </div>
+                                <div class="carousel-item" style="background-image: url(../images/events/2.jpg);"></div>
+                                <div class="carousel-item" style="background-image: url(../images/events/311.jpg);"></div>
+                                <div class="carousel-item" style="background-image: url(../images/events/42.jpg);"></div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <h5>Silhouette Brand Training 2018</h5>
+                            <h6> Date: 19-02-2018</h6>
+                            <p class="text-justify">
+                                The aim of Silhouette Brand Training is to welcome staff from our partner institutions and share experiences covering various topics which would help the attendees learn more information about the Silhouette brand as well about its products. We Thank You all for your participation in our Silhouette brand training program 2018. We treasure your contributions and time with us, and hope you guys must have come away with right knowledge about the Silhouette brand & company.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="clearfix mb-2"></div>
+
+        <div class="col-lg-3 col-sm-6 portfolio-item">            
+
+
+            @foreach (var item in Model)
+            {
+
+                <div class="card">
+                    <a href="#" data-toggle="modal" data-target=".ttr1"><img class="card-img-top" src="../EventsNews/EventsThumbnails/@Html.ValueFor(modelItem => item.Thumbnail)" alt=""></a>
+                    <p class="bg-primaryb text-dark">@Html.ValueFor(model => item.Title)</p>
+
+                    <p class="style01">
+                        <b>Location:</b>  @Html.ValueFor(model => item.Location)<br>
+                        <b>Date:</b>  @Html.ValueFor(model => item.EventDate)
+                    </p>
+                </div>
+            }
+
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+

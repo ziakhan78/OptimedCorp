@@ -1,0 +1,139 @@
+﻿
+
+
+
+
+@{
+    ViewBag.Title = "Brands - Silhouette";
+}
+
+@model IEnumerable<OptimedCorporation.Models.Banner>
+<script src="~/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("div.carousel-item:first").addClass("active");
+    });
+</script>
+
+
+<div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+
+    <div class="video-section-mask"></div>
+    <div class="video-section-mask"></div>
+
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+   
+    </ol>
+
+
+    <div class="carousel-inner" role="listbox">
+        @foreach (var item in Model)
+        {
+            <div class="carousel-item">
+                <img class="img-fluid " src="../BannerImages/@Html.ValueFor(modelItem => item.BannerImage)" alt="" style="width:100%;" />
+            </div>
+        }
+    </div>
+
+</div>
+
+
+
+<section id="rrr" class="py-5 ">
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-5">
+
+                <img class="img-fluid" src="../images/10.png" alt="" style="max-width:60%" />
+                <div class=" clearfix"></div>
+
+              
+                <h2 class="agile-title">Iconic Eyewear Made In Austria.<br />Since 1964.</h2>
+                <span class="w3-line"></span>
+                <p class="mt-3">
+                    Silhouette is synonymous with lightness, innovation, quality along with a whole host of other positive adjectives. Silhouette has revolutionized the world of eyewear with the world’s lightest glasses. Extremely high standards of craftsmanship and the use of the latest materials and production techniques, enable the company to churn out new and innovative products on a regular basis.
+
+                </p>
+
+
+
+
+
+            </div>
+
+            <div class="col-md-7 ">
+
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/z5IYeTJKfxs" allowfullscreen></iframe>
+                </div>
+
+
+
+            </div>
+
+            <div class="col-md-12 text-left pl-4 pr-4 pt-4">
+                Producing eyewear from start to end in Austria where they are also headquartered, they have a long tradition of producing classic and innovative eyewear – a tradition that goes right back to 1964. Their production philosophy that minutely focuses on craftsmanship and emphasis on manual work, is a testament to how they are able to produce exclusive and unique eyewear.
+
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+
+
+<section class="workinghour_bg mb-5 p-5">
+    <div class="container">
+
+        <div class="row align-items-center">
+            <div class="col-md-4">
+
+                <img class="img-fluid" src="../images/sil-brand.jpg" alt="" />
+
+
+            </div>
+
+            <div class="col-md-4">
+                <img class="img-fluid" src="../images/sil-brand1.jpg" alt="" />
+
+            </div>
+
+            <div class="col-md-4">
+                <img class="img-fluid" src="../images/sil-brand2.jpg" alt="" />
+
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+<div class="container">
+
+    <div class="row">
+        <div class="clearfix">
+            <p class="text-left">Unlimited possibilities in terms of shape, color and design express what makes a pair of Silhouette spectacles unique.From the very outset, Silhouette has always pursued a vision that still holds true today: Creating the most beautiful eyewear in the world. They put their heart and soul into their work to turn this vision into reality.</p>
+
+            <p class="text-left">
+                Innovative materials and puristic design define the unmistakable lightness of Silhouette eyewear. See it and feel it.
+
+            </p>
+
+        </div>
+
+        <div class="clearfix"></div><br>
+        <div class="d-flex text-center mb-3" style="margin: 0 auto; width: 180px; ">
+            <a class="btn btn-outline-secondary click-me" href="https://www.silhouette.com/us/us/home" target="_blank">Visit Silhouette Website</a>
+        </div>
+
+    </div>
+</div>

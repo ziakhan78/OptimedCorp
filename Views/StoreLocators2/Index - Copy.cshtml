@@ -1,0 +1,198 @@
+﻿@model OptimedCorporation.Models.StoreLocator
+
+@*@model List<OptimedCorporation.Models.StoreLocator>*@
+
+@{
+    ViewBag.Title = "Store Locator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCgBMi2cSTIBji1kd9byutSuL48CoI4D8&callback=initialize"></script>
+
+<script type="text/javascript">
+
+        var markers = @Html.Raw(ViewBag.Markers);
+        window.onload = function () {
+            var mapOptions = {
+                center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var infoWindow = new google.maps.InfoWindow();
+            var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+            for (i = 0; i < markers.length; i++) {
+                var data = markers[i]
+                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: data.title
+                });
+                (function (marker, data) {
+                    google.maps.event.addListener(marker, "click", function (e) {
+                        infoWindow.setContent(data.description);
+                        infoWindow.open(map, marker);
+                    });
+                })(marker, data);
+            }
+        }
+</script>
+
+
+
+<div id="home" class="page-header parallax-full dark-section text-center section" style="background: url(../images/contact-banner.jpg) 50% 50%;">
+    <div class="video-section-mask"></div>
+</div>
+
+
+<div class="workinghour_bg">
+    <div class="container">
+
+        <div class="row">
+            <ol class="breadcrumb breadcrumb-right" style="padding:10px 0; margin:0;">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Contact</li>
+            </ol>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="bg-dark py-5">
+
+    <div class="container">
+
+        <div class="row no-gutters bg-grey2 d-flex align-items-stretch">
+
+
+            <div class="col-lg-5  align-items-stretch">
+
+                <div class="form_top_bg1 text-center text-white">
+                    <h3>Store Locator</h3>
+
+                </div>
+
+                <div class="form-bg">
+
+
+
+                    <div>
+                        @using (Html.BeginForm("GetData", "StoreLocators", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <div>
+                                        @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @placeholder = "State" } })
+                                        @*@Html.DropDownList("State", ViewBag.State as SelectList, htmlAttributes: new { @class = "form-control" })*@
+                                        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                </div>
+
+                                <div class="form-group">
+                                    <div>
+                                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @placeholder = "City" } })
+                                        @*@Html.DropDownList("City", ViewBag.City as SelectList, htmlAttributes: new { @class = "form-control" })*@
+                                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <p style="text-align:center;">or</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <div>
+                                        @Html.EditorFor(model => model.Pin, new { htmlAttributes = new { @class = "form-control", @placeholder = "Pin" } })
+                                        @Html.ValidationMessageFor(model => model.Pin, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="">
+                                        <input type="submit" value="Submit" class="btn btn-primary str_locator" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+
+                        @*<div class="form-group text-center">
+                                <label for="email">Or</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter Your Pin Code" name="Enter Your Pin Code">
+                            </div>
+
+
+
+                            <div class="text-center pr-5  pl-5"> <button type="submit" class="btn btn-primary  btn-block str_locator"><h4>Submit</h4></button></div>*@
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+            <div class="col-lg-7  p-4 bg-white ">
+
+
+                @*@{
+                        Html.RenderPartial("StoreAddress");
+                    }*@
+
+                <div class="row">
+
+
+
+
+
+                  @foreach (var item in ViewBag.AddressDetails)
+                    {<div class="col-md-6">
+
+    <h3>@item.ShopName</h3>
+    <span class="w3-line"></span>
+    <p class="mt-3">
+        <b>Address:</b><br>
+        @item.Address
+
+
+    </p>
+    <b>Phone: </b>@item.Contact<br />
+    <b>Email: </b>@item.Email<br />
+</div>
+                    }
+
+
+                    <div class="clearfix"></div>
+                    <div class="embed-responsive  m-3">
+                        <div id="dvMap" class="card" style="width: 100%; height: 400px">
+                        </div>
+                        @*<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6343.995045035384!2d72.82855743400924!3d19.012580853346776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cec0a04c756b%3A0xf4c6e33d0bd706c8!2sSilver+Opticals!5e0!3m2!1sen!2sus!4v1534400653565" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>*@
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+</div>

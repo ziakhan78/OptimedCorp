@@ -1,0 +1,307 @@
+﻿@*@model OptimedCorporation.Models.StoreLocator*@
+@model IEnumerable<OptimedCorporation.Models.StoreLocator>
+
+@*@model List<OptimedCorporation.Models.StoreLocator>*@
+
+@{
+    ViewBag.Title = "Store Locator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCgBMi2cSTIBji1kd9byutSuL48CoI4D8&callback=initialize"></script>
+
+<script>
+    $(document).ready(function () {
+        $("div .carousel-inner img .carousel-item:first").addClass("active");
+    });
+</script>
+
+<div id="home" class="dark-section text-center section">
+    <img class="img-fluid img_hpercent" src="~/images/contact-banner.jpg" alt="" />
+    <div class="video-section-mask"></div>
+</div>
+
+
+<div class="workinghour_bg">
+    <div class="container">
+
+        <div class="row">
+            <ol class="breadcrumb breadcrumb-right" style="padding:10px 0; margin:0;">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Store Locator</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+<div class="bg-dark py-5">
+
+    <div class="container">
+
+        <div class="row no-gutters bg-grey2 d-flex align-items-stretch">
+
+            <div class="col-md-12 ">
+
+
+
+                <div class="form-bg">
+                    <script>
+                        function getCityList() {
+                            debugger;
+                            var stateId = $("#State").val();
+                            $.ajax({
+                                url: '/StoreLocators/GetCityFromSL',
+                                type: 'POST',
+                                datatype: 'application/json',
+                                contentType: 'application/json',
+                                data: JSON.stringify({ stateId: +stateId }),
+                                success: function (result) {
+                                    $("#City").html("");
+                                    $("#City").append
+                                        ($('<option></option>').val(null).html("Select City"));
+                                    $.each($.parseJSON(result), function (i, city) { $("#City").append($('<option></option>').val(city.CityId).html(city.CityName)) })
+                                },
+                                error: function () { alert("Something went wrong, please try again!") },
+                            });
+                        }
+                    </script>
+
+                    <div class="row">
+
+
+
+                        <div class="col-md-7 border-right ">
+                            <span><p class="text-center font-weight-bold">Search by State and City</p></span>
+                            @using (Html.BeginForm("GetResult", "StoreLocators", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div>
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <select id="State" name="State" onchange="getCityList()" class="form-control">
+                                                    <option>Select State</option>
+                                                    @foreach (var item in ViewBag.StateList1)
+                                                    {
+                                                        <text>
+                                                            <option value="@item.StateId" text="@item.StateName">@item.StateName</option>
+                                                        </text>
+                                                    }
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <select id="City" name="City" class="form-control">
+                                                        <option>Select City</option>
+                                                    </select>
+                                                    <span style="color:red">@Html.Raw(ViewBag.CityError)</span>
+                                                </div>
+
+                                                <div>
+
+                                                    @if (ViewBag.StateError != null)
+                                                    {
+                                                        <span style="color:red">@Html.Raw(ViewBag.StateError)</span>
+                                                    }
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input type="submit" value="Submit" class="btn btn-primary str_locator" />
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="col-md-5 border-left ">
+                            <span><p class="text-center font-weight-bold">Search by Shop Name</p></span>
+
+                            @using (Html.BeginForm("SearchByShop", "StoreLocators", FormMethod.Get))
+                            {
+                                <table class="table">
+
+                                    <tr>
+                                        <td>
+                                            <div class="">
+                                                <div>
+                                                    <input id="ShopName" type="text" name="ShopName" class="form-control" placeholder="Enter shop name!" />
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                        <td><input type="submit" value="Search" class="btn btn-primary str_locator" /></td>
+                                    </tr>
+                                </table>
+                            }
+                        </div>
+
+
+                    </div>
+
+                                   
+
+
+                    </div>
+
+
+
+
+
+                   
+
+
+
+                    @*<div class="form-group">
+            @using (Html.BeginForm("Search", "StoreLocators", FormMethod.Get))
+            {
+                <div class="">
+                    <div>
+                        <input id="City" type="text" name="City" class="" placeholder="Enter city name!" /> <input type="submit" value="Search" class="btn btn-primary" />
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="form-group">
+            @using (Html.BeginForm("SearchByState", "StoreLocators", FormMethod.Get))
+            {
+                <div class="">
+                    <div>
+                        <input id="State" type="text" name="State" class="" placeholder="Enter state name!" /> <input type="submit" value="Search" class="btn btn-primary" />
+                    </div>
+                </div>
+            }
+        </div>*@
+
+                </div>
+
+            <div class="col-md-12 ">
+                <table class="table">
+                    <tr>
+                        <th>
+                            Shop
+                        </th>
+                        <th>
+                            Contact
+                        </th>
+                       
+
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Address
+                        </th>
+
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <div id="@item.Id" class="modal fade ttr1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Optimed Corporation</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+
+
+                                        <div class="mt-1">
+                                            <div class="row">
+                                                <div class="col-md-3 text-right font-weight-bold">Shop:</div>
+                                                <div class="col-md-9 text-left">@item.ShopName</div>
+
+                                                <div class="col-md-3 text-right font-weight-bold">Mobile:</div>
+                                                <div class="col-md-9 text-left">@item.Mobile</div>
+
+                                                <div class="col-md-3 text-right font-weight-bold">Alternate Mobile:</div>
+                                                <div class="col-md-9 text-left">@item.Mobile2</div>
+
+                                                <div class="col-md-3 text-right font-weight-bold">Phone-1:</div>
+                                                <div class="col-md-9 text-left">@item.Phone1</div>
+
+                                                <div class="col-md-3 text-right font-weight-bold">Phone-2:</div>
+                                                <div class="col-md-9 text-left">@item.Phone2</div>
+
+                                                <div class="col-md-3 text-right font-weight-bold">Email:</div>
+                                                <div class="col-md-9 text-left">@item.Email</div>
+
+                                                <div class="col-md-3 text-right font-weight-bold">Address:</div>
+                                                <div class="col-md-9 text-left">@item.AddressLine1 @item.AddressLine2</div>
+
+                                                <div class="col-md-3 text-right font-weight-bold">City:</div>
+                                                <div class="col-md-9 text-left">@item.City - @item.Pin</div>
+
+                                                <div class="col-md-3 text-right font-weight-bold">State:</div>
+                                                <div class="col-md-9 text-left">@item.State</div>
+
+                                                <div class="col-md-3 text-right font-weight-bold">GPS Coordinates:</div>
+                                                <div class="col-md-9 text-left">Latitude-@Html.DisplayFor(modelItem => item.Latitude) Longitude-@Html.DisplayFor(modelItem => item.Longitude)</div>
+
+                                                <div class="col-md-3 text-right font-weight-bold">Working Time:</div>
+                                                <div class="col-md-9 text-left">@Html.DisplayFor(modelItem => item.WorkingTimeStart) - @Html.DisplayFor(modelItem => item.WorkingTimeEnd)</div>
+
+                                                <div class="col-md-3 text-right font-weight-bold">Closed On:</div>
+                                                <div class="col-md-9 text-left">@Html.DisplayFor(modelItem => item.ClosedOn)</div>
+                                            </div>
+
+                                           
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <tr>
+                            <td>
+                                <a href="#" data-toggle="modal" data-target="#@item.Id"> @Html.DisplayFor(modelItem => item.ShopName)</a>
+
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.Mobile)<br />@Html.DisplayFor(modelItem => item.Mobile2)
+                            </td>*@
+                            <td width="200">
+                                @Html.DisplayFor(modelItem => item.Phone1)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AddressLine1)   @Html.DisplayFor(modelItem => item.AddressLine2)  @Html.DisplayFor(modelItem => item.City)  @Html.DisplayFor(modelItem => item.Pin)
+                            </td>
+
+                        </tr>
+                    }
+
+                </table>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

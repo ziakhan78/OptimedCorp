@@ -1,0 +1,217 @@
+﻿@model OptimedCorporation.Models.StoreLocator
+
+@*@model List<OptimedCorporation.Models.StoreLocator>*@
+
+@{
+    ViewBag.Title = "Store Locator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCgBMi2cSTIBji1kd9byutSuL48CoI4D8&callback=initialize"></script>
+
+<script type="text/javascript">
+
+        var markers = @Html.Raw(ViewBag.Markers);
+        window.onload = function () {
+            var mapOptions = {
+                center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var infoWindow = new google.maps.InfoWindow();
+            var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+            for (i = 0; i < markers.length; i++) {
+                var data = markers[i]
+                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: data.title
+                });
+                (function (marker, data) {
+                    google.maps.event.addListener(marker, "click", function (e) {
+                        infoWindow.setContent(data.description);
+                        infoWindow.open(map, marker);
+                    });
+                })(marker, data);
+            }
+        }
+</script>
+
+@*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+
+
+
+@*<div id="home" class="page-header parallax-full dark-section text-center section" style="background: url(../images/contact-banner.jpg) 50% 50%;">
+        <div class="video-section-mask"></div>
+    </div>*@
+
+<div id="home" class="dark-section text-center section">
+    <img class="img-fluid img_hpercent" src="~/images/contact-banner.jpg" alt="" />
+    <div class="video-section-mask"></div>
+</div>
+
+
+<div class="workinghour_bg">
+    <div class="container">
+
+        <div class="row">
+            <ol class="breadcrumb breadcrumb-right" style="padding:10px 0; margin:0;">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Contact</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+<div class="bg-dark py-5">
+
+    <div class="container">
+
+        <div class="row no-gutters bg-grey2 d-flex align-items-stretch">
+
+            <div class="col-md-4 ">
+
+                <div class="form_top_bg1 text-center text-white">
+                    <h3>Store Locator</h3>
+                </div>
+
+                <div class="form-bg">
+
+                    <script>
+                        function getCityList() {
+                            debugger;
+                            var stateId = $("#State").val();
+                            
+                            $.ajax({
+                                url: '/StoreLocators/GetCityFromSL',
+                                type: 'POST',
+                                datatype: 'application/json',
+                                contentType: 'application/json',
+                                data: JSON.stringify({ stateId: +stateId }),
+                                success: function (result) {                                   
+                                    $("#City").html("");
+                                    $("#City").append
+                                        ($('<option></option>').val(null).html("Select City"));
+                                    $.each($.parseJSON(result), function (i, city) { $("#City").append($('<option></option>').val(city.CityId).html(city.CityName)) })
+                                   
+                                },
+                                error: function () { alert("Something went wrong, please try again!") },
+                            });
+                        }
+                    </script>
+
+
+                    @using (Html.BeginForm("Index", "StoreLocators", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div>
+                                    @*@Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @placeholder = "State" } })*@
+
+
+                                    <select id="State" name="State" onchange="getCityList()" class="form-control">
+                                        <option>Select State</option>
+                                        @foreach (var item in ViewBag.StateList1)
+                                        {
+                                            <text>
+                                                <option value="@item.StateId" text="@item.StateName">@item.StateName</option>
+                                            </text>
+                                        }
+                                    </select>
+                                    @*@Html.ValidationMessage("StoreLocator", "", new { @class = "text-danger" })*@
+                                  @if (ViewBag.StateError != null)
+        {
+        <span style="color:red">@Html.Raw(ViewBag.StateError)</span>
+        }
+                                    @*@Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })*@
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <div>
+
+                                    @*@Html.DropDownListFor(model => model.City, Enumerable.Empty<SelectListItem>(), "Select City" , new { htmlAttributes = new { @class = "form-control" } })*@
+
+                                    @*@Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @placeholder = "City" } })*@
+                                    <select id="City" name="City" class="form-control">
+                                        <option>Select City</option>
+                                    </select>
+                                    <span style="color:red">@Html.Raw(ViewBag.CityError)</span>
+                                    @*@Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })*@
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p style="text-align:center;">or</p>
+                            </div>
+
+                            <div class="form-group">
+                                <div>
+                                    <input id="Pin" type="text" name="Pin" class="form-control" />
+                                    @*@Html.EditorFor(model => model.Pin, new { htmlAttributes = new { @class = "custom_css" } })
+                                        @Html.ValidationMessageFor(model => model.Pin, "", new { @class = "text-danger" })*@
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="">
+                                    <input type="submit" value="Submit" class="btn btn-primary str_locator" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+
+
+
+            </div>
+            <div class="col-md-8 p-4 bg-white">
+                <div class="row">
+
+                    <div class="embed-responsive m-3">
+                        <div id="dvMap" class="card" style="width: 100%; height: 400px">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 p-4 bg-white">
+                <div class="row">
+
+                    @if (ViewBag.AddressDetails != null)
+                    {
+                        foreach (var item in ViewBag.AddressDetails)
+                        {
+                            <div class="col-md-4">
+
+                                <h3>@item.ShopName</h3>
+                                <span class="w3-line"></span>
+                                <p class="mt-3">
+                                    <b>Address:</b><br>
+                                    @item.AddressLine1
+
+                                </p>
+                                <b>Phone: </b>@item.Mobile<br />
+                                <b>Email: </b>@item.Email<br />
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

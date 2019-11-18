@@ -1,0 +1,374 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+@model IEnumerable<OptimedCorporation.Models.Banner>
+<script src="~/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("div.carousel-item:first").addClass("active");
+    });
+</script>
+
+<div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+    <a href="#rrr" class="scroll-down-icon scroll-to">
+        <!--<i class="fa fa-arrow-circle-down" aria-hidden="true"></i>-->
+        <img src="../images/down-arrow.png" alt="" />
+    </a>
+
+
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+
+    </ol>
+
+
+
+    @*<div class="carousel-inner" role="listbox">
+
+
+
+            @foreach (var item in Model)
+            {
+            <div class="carousel-item" data-ride="carousel" data-interval="100" data-pause="null">
+                <img class="img-fluid " src="../BannerImages/@Html.ValueFor(modelItem => item.BannerImage)" alt="" style="width:100%;" />
+            </div>
+
+            }
+        </div>*@
+
+
+    <div class="carousel-inner" role="listbox">
+        @foreach (var item in Model)
+        {
+            <div class="carousel-item" data-ride="carousel" data-interval="100" data-pause="null">
+
+                <img class="img-fluid " src="../BannerImages/@Html.ValueFor(modelItem => item.BannerImage)" alt="" style="width:100%;" />
+            </div>
+
+        }
+
+        </div>
+
+</div>
+
+
+
+
+
+
+
+
+<section id="rrr" class="py-4 Our_Story  text-white">
+    <div class="container">
+
+        <div class="text-center text-white">
+            <h2>Our Story</h2>
+            <span class="w3-line011"></span>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="row align-items-center">
+
+            <div class="col-md-12 pt-3 pb-3">
+                <p class="text-center">
+                    With an industry experience that spans more than 50 years, Optimed Corporation is one of the leading distributors of eyewear in the Indian market today. A family business, Optimed Corporation has always maintained sustainable and concrete relationships with retailers around the nation.
+                </p>
+
+                <p class="text-center">
+                    With time, Optimed Corporation has not only evolved in its operations, but has also expanded its network, based on its core values of trust and quality. Today, after five decades,
+                    Optimed Corporation is successfully delivering the finest of optical brands to more than 50 cities all over India.
+                </p>
+
+
+
+                <div class="text-center">
+
+                    @using (Html.BeginForm("OurStory", "Home", FormMethod.Post))
+                    {
+                        <button type="submit" class="btn btn-outline-secondary click-me">Read More</button>
+                    }
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    
+        <div class="row no-gutters align-items-center">
+            <div class="col-md-6"><img class="img-fluid" src="../images/photo-img-01.jpg" alt="" /></div>
+
+            <div class="col-md-6">
+                <div class="align-items-center padding_content">
+                    <h2 class="">Silhouette </h2>
+                    <span class="w3-line"></span>
+
+
+
+                    <p class="text-justify mt-4">
+                        Silhouette is synonymous with lightness, innovation & quality along with a whole host of other positive adjectives.
+                        Silhouette has revolutionized the world of eyewear with the world’s lightest glasses. Extremely high standards of craftsmanship and the use of the latest materials and production techniques,
+                        enables the brand to churn new and innovative products on a regular basis.
+                    </p>
+
+
+
+                    <a class="btn btn-outline-secondary click-me" href="@Url.Action("Silhouette","Brands")">Read More</a> &nbsp;
+                    <a class="btn btn-outline-secondary click-me" href="https://www.silhouette.com/us/us/home" target="_blank">Visit Silhouette Website</a>
+                </div>
+            </div>
+            </div>
+
+</section>
+
+<section>
+    <div class="">
+        <div class="row no-gutters align-items-center">
+
+            <div class="col-md-6">
+                <div class="align-items-center  padding_content">
+                    <h2>Adidas</h2>
+                    <span class="w3-line"></span>
+
+                    <p class="text-justify mt-4">
+                        Adidas is one of the biggest sports brands in the world. Adidas eyewear products are high in quality and ensure unobstructed vision. Abiding by their motto ‘vision meets the best innovation combined with style and technology’, it has been a leader of innovation in design and technology.
+
+
+                    </p>
+                    <a class="btn btn-outline-secondary click-me" href="@Url.Action("Adidas","Brands")">Read More</a> &nbsp;
+                    <a class="btn btn-outline-secondary click-me" href="https://www.adidas.co.in/" target="_blank">Visit Adidas Website</a>
+
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-6">
+                <img class="img-fluid" src="../images/Adidas.jpg" alt="" />
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+</section>
+
+
+
+<section>
+    <div class="">
+        <div class="row no-gutters align-items-center">
+            <div class="col-md-6"><img class="img-fluid" src="../images/Etnia-Barcelona.jpg" alt="" /></div>
+
+            <div class="col-md-6">
+                <div class="align-items-center padding_content">
+                    <h2>Etnia Barcelona </h2>
+                    <span class="w3-line"></span>
+
+                    <p class="text-justify mt-4">
+                        Incepted in 2001, Etnia Barcelona is known to create unique eyewear whose value lies in the design of its colours. The convenience and comfort of a pair of Etnia Barcelona glasses are one of its greatest attributes. The brand is creating its own history through the cooperation with myths of the Art and Photography world. Etnia Barcelona offers a range of eyewear products with over 500 different colours and over 1000 eyeglasses in its catalogue.
+                    </p>
+
+
+                    <a class="btn btn-outline-secondary click-me" href="@Url.Action("EtniaBarcelona","Brands")">Read More</a> &nbsp;
+                    <a class="btn btn-outline-secondary click-me" href="https://www.etniabarcelona.com/" target="_blank">Visit Etnia Barcelona Website</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
+
+<section class="StoreLocator ">
+    <div class="pt-4 container">
+
+        <div class="text-center text-white">
+            <h2>Store Locator</h2>
+            <span class="w3-line04"></span>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row pt-2">
+
+
+            <p class="text-center text-white">
+                Operating across the length and breadth of the country, Optimed Corporation is the sole distributor of international optical brands in India.<br>
+
+                Our brands are available with leading retail chains, independent optical stores, fashion boutiques and eye hospitals. Now locate leading optical retail stores near you, within seconds to find our exclusive eyewear products.
+            </p>
+
+
+        </div>
+
+
+
+        <div class="form_top_bg text-center text-white">
+            <div class="arrow-down"></div><h3>Store Locator</h3>
+        </div>
+
+        <div class="form-bg  text-center ">
+            @*<div>
+                @using (Html.BeginForm("BindStoreLocator", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                    </div>
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" id="state" placeholder="Enter state name" name="state">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="city" placeholder="Enter city name" name="city">
+                    </div>
+
+                    <div class="form-group text-center">
+                        <label for="email">Or</label>
+                        <input type="text" class="form-control" id="pin" placeholder="Enter pin" name="pin">
+                    </div>
+
+                    <div class="text-center pr-5  pl-5"> <button type="submit" class="btn btn-primary  btn-block str_locator">Submit</button></div>
+                }
+            </div>*@
+
+        </div>
+
+        <div class="form-bg">
+            <script>
+                function getCityList() {
+                    debugger;
+                    var stateId = $("#State").val();
+                    $.ajax({
+                        url: '/StoreLocators/GetCityFromSL',
+                        type: 'POST',
+                        datatype: 'application/json',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ stateId: +stateId }),
+                        success: function (result) {
+                            $("#City").html("");
+                            $("#City").append
+                                ($('<option></option>').val(null).html("Select City"));
+                            $.each($.parseJSON(result), function (i, city) { $("#City").append($('<option></option>').val(city.CityId).html(city.CityName)) })
+                        },
+                        error: function () { alert("Something went wrong, please try again!") },
+                    });
+                }
+            </script>
+
+            <div class="row">
+
+                <div class="col-md-7 border-right ">
+                    <span><p class="text-center font-weight-bold">Search by State and City</p></span>
+                    @using (Html.BeginForm("GetResult", "StoreLocators", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div>
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <select id="State" name="State" onchange="getCityList()" class="form-control">
+                                            <option>Select State</option>
+                                            @foreach (var item in ViewBag.StateList1)
+                                            {
+                                                <text>
+                                                    <option value="@item.StateId" text="@item.StateName">@item.StateName</option>
+                                                </text>
+                                            }
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <select id="City" name="City" class="form-control">
+                                                <option>Select City</option>
+                                            </select>
+                                            <span style="color:red">@Html.Raw(ViewBag.CityError)</span>
+                                        </div>
+
+                                        <div>
+
+                                            @if (ViewBag.StateError != null)
+                                            {
+                                                <span style="color:red">@Html.Raw(ViewBag.StateError)</span>
+                                            }
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Submit" class="btn btn-primary str_locator" />
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    }
+                </div>
+
+                <div class="col-md-5 border-left ">
+                    <span><p class="text-center font-weight-bold">Search by Shop Name</p></span>
+
+                    @using (Html.BeginForm("SearchByShop", "StoreLocators", FormMethod.Get))
+                    {
+                        <table class="table">
+
+                            <tr>
+                                <td>
+                                    <div class="">
+                                        <div>
+                                            <input id="ShopName" type="text" name="ShopName" class="form-control" placeholder="Enter shop name!" />
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td><input type="submit" value="Search" class="btn btn-primary str_locator" /></td>
+                            </tr>
+                        </table>
+                    }
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+        @*<div class="col-lg-6 text-white padding_content">
+            <h3>Bhandare Eyecare</h3>
+            <p>Located in: Palladium Address:, Mumbai, Maharashtra - 400013 , India</p>
+            <p>Phone Off : (022) 66106139</p>
+
+            <h3>Silver Opticals</h3>
+            <p>Address:<br>Located in: Palladium Address:, Mumbai, Maharashtra - 400013, India</p>
+            <h3>Phone</h3>
+            <p>Off: (022) 66106139</p>
+        </div>*@
+
+    </div>
+
+           
+    
+</section>

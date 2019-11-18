@@ -1,0 +1,205 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc;
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model OptimedCorporation.Models.Feedback
+
+
+<style>
+
+    .carousel-item {
+        height: 70vh;
+        min-height: 300px;
+        background: no-repeat center center scroll;
+        background-size: cover;
+    }
+
+
+    .carousel-item01 {
+        min-height: 300px;
+        background: no-repeat center center scroll;
+    }
+
+    .tales {
+        height: 370px
+    }
+</style>
+
+
+
+
+
+@*<div id="home" class="page-header parallax-full dark-section text-center section" style="background: url(../images/contact_img.jpg) 50% 50%;">
+        <div class="video-section-mask"></div>
+    </div>*@
+
+<div id="home" class="dark-section text-center section">
+    <img class="img-fluid img_hpercent" src="~/images/contact_img.jpg" alt="" />
+    <div class="video-section-mask"></div>
+</div>
+
+
+
+<div class="workinghour_bg">
+    <div class="container">
+
+        <div class="row">
+            <ol class="breadcrumb breadcrumb-right" style="padding:10px 0; margin:0;">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Contact</li>
+            </ol>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+
+
+
+    <p class="text-center mt-3">
+        <b>Post Your Enquiry</b><br>
+        Experience our best customer service at a click
+        <div class="clearfix"></div>
+    </p>
+
+    <div class="col-md-6 pb-4 " style="margin:0 auto 0px;">
+
+        <div class="form_top_bg text-center text-white">
+            <div></div><h3>Contact</h3>
+
+        </div>
+
+
+        <div class="form-bg ">
+
+            @using (Html.BeginForm("Enquiry", "Feedbacks", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div class="form-group">
+
+                    <div>
+                        @Html.RadioButtonFor(model => model.Type, "B2B Customer: Business Enquiry", new { htmlAttributes = new { @class = "form-control" } })<span> B2B Customer: Business Enquiry</span>
+                        @Html.RadioButtonFor(model => model.Type, "B2C Customer: User Enquiry", new { htmlAttributes = new { @class = "form-control" } })<span> B2C Customer: User Enquiry</span>
+                        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div>
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+
+
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Address" } })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.City, htmlAttributes: new { @class = "col-lg-3 col-form-label form-control-label" })*@
+                    <div>
+                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @placeholder = "City" } })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.State, htmlAttributes: new { @class = "col-lg-3 col-form-label form-control-label" })*@
+                    <div>
+                        @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @placeholder = "State" } })
+                        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.Pin, htmlAttributes: new { @class = "col-lg-3 col-form-label form-control-label" })*@
+                    <div>
+                        @Html.EditorFor(model => model.Pin, new { htmlAttributes = new { @class = "form-control", @placeholder = "Pin" } })
+                        @Html.ValidationMessageFor(model => model.Pin, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "col-lg-3 col-form-label form-control-label" })*@
+                    <div>
+                        @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", @placeholder = "Message" } })
+                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        @Html.Captcha(5)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <span style="color:red; font-style:italic; font-weight:bold;">@Html.Raw(ViewBag.ErrMessage)</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div>
+                        <input type="submit" value="Submit" class="btn btn-primary str_locator" />
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div>
+                        <span style="color:green;font-weight:bold;">@Html.Raw(ViewBag.Message)</span>
+                    </div>
+                </div>
+
+            </div>
+                    }
+
+
+
+                </div>
+
+    </div>
+
+
+
+</div>
+
+

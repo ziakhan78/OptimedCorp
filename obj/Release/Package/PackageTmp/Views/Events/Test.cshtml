@@ -1,0 +1,76 @@
+﻿@model IEnumerable<OptimedCorporation.Models.EventImages>
+
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<div class="modal fade ttr1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Optimed Corporation</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+
+                <div id="carouselExampleIndicators-1" class="carousel slide " data-ride="carousel">
+
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators-1" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators-1" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicators-1" data-slide-to="3"></li>
+                    </ol>
+
+
+                    <div class="carousel-inner" role="listbox">
+                        <!-- Slide One - Set the background image for this slide in the line below -->
+
+                        @foreach (var item in Model)
+                        {
+                            @*<div class="carousel-item active" style="background-image:url(../EventsNews/EventsImages/@Html.ValueFor(modelItem => item.Images));"> </div>*@
+
+                            <img class="card-img-top" src="../../EventsNews/EventsImages/@Html.ValueFor(modelItem => item.Images)" alt="Events Images">
+
+                        }
+                    </div>
+                </div>
+
+
+                <div class="mt-3">
+                    @*@foreach (var item in Model)
+                        {
+
+                            @item.Id <br />
+                            @item.EventId<br />
+
+                            @item.Events.Title<br />
+                            @item.Events.Location<br />
+                            @item.Events.EventDate<br />
+
+                            <img class="card-img-top" src="../../EventsNews/EventsImages/@Html.ValueFor(modelItem => item.Images)" alt="Events Images"><br />
+
+                        }*@
+                    @foreach (var item in Model)
+                    {
+                        <h5>@item.Events.Title</h5>
+                        <h6> Date: @item.Events.EventDate</h6>
+                        <p class="text-justify">
+                            @item.Events.Description
+                        </p>
+                    }
+                </div>
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

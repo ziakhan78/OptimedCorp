@@ -1,0 +1,92 @@
+﻿@model OptimedCorporation.Models.News
+
+@{
+    ViewBag.Title = "Edit Newsletter";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@using (Html.BeginForm("Edit", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+   
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Edit Newsletter</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Ipaddress)
+    @Html.HiddenFor(model => model.DateAdded)
+    @Html.HiddenFor(model => model.Thumbnail)
+    @Html.HiddenFor(model => model.FilePath)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Heading, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Heading, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Heading, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NewsDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.NewsDate, new { @value = Model.NewsDate, htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NewsDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Thumbnail, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="NewsThumbnail" />
+            @Html.ValidationMessageFor(model => model.Thumbnail, "", new { @class = "text-danger" })
+            <img src='~/EventsNews/NewsThumbnails/@Html.ValueFor(model => model.Thumbnail)' alt="" height="50" width="50" />
+            <span class="txt_msg">Please upload only jpeg format and image dimension is Width="800px" height="600px"</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FilePath, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="NewsFile" />
+            @Html.ValidationMessageFor(model => model.FilePath, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Status)
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "ViewNews")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

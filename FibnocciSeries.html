@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+       
+        function fibnocci() { 
+            document.writeln(2 + 3 + "9");
+            document.writeln("2" + 3 + 9);
+            document.writeln("2" + (3 + 9));
+
+            var a = "Zia1";
+            var b = a;
+            if (a === b) {
+                alert("tested");
+            }
+
+            var student = { age: 20, batch: "ABC" };
+            alert(student);
+            delete student.age;
+            alert(student);
+
+            //var num = document.getElementById("TxtNo").value;
+            //var a = 1;
+            //var b = 0;
+            //var temp;
+            //while (num >= 0) {
+            //    temp = a;
+            //    a = a + b;
+            //    b = temp;               
+            //    num--;                
+            //    document.write(b + "<br />");                
+            //} 
+        }
+
+
+        function fibnocci1() {          
+            var num = document.getElementById("TxtNo").value;           
+            if (num <= 1)
+                return document.write(1);
+            else
+                return document.write(num + 1);
+        }
+
+    </script>
+</head>
+<body>
+    <input id="TxtNo" type="text" name="TxtNo"  />
+    <input type="button" name="Submit" value="Get Fibnocci No." onclick="fibnocci();" />
+    
+</body>
+</html>
